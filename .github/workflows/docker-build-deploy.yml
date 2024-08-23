@@ -21,9 +21,9 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t my-docker-image:latest .
+          docker build -t my-docker-app:latest . -f docker/Dockerfile -d
 
       - name: Push Docker image
         run: |
-          docker tag my-docker-image:latest ${{ secrets.DOCKER_HUB_USERNAME }}/my-docker-image:latest
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/my-docker-image:latest
+          docker tag my-docker-image:latest ${{ secrets.DOCKER_HUB_USERNAME }}/my-docker-app:latest
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/my-docker-app:latest

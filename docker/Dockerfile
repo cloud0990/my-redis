@@ -8,7 +8,7 @@ FROM openjdk:21
 WORKDIR /app
 ARG JAR_FILE=study-project
 ARG APP_VERSION=0.0.1-SNAPSHOT
-COPY /target/${JAR_FILE}-${APP_VERSION}.jar /app/application.jar
+COPY target/${JAR_FILE}-${APP_VERSION}.jar /app/my-docker-app.jar
 
 #"hosts": ["endpoint|redacted"],
-ENTRYPOINT ["java", "-jar", "/app/application.jar"]
+ENTRYPOINT ["java", "-jar", "/app/my-docker-app.jar"]
