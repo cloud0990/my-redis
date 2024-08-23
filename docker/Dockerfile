@@ -10,4 +10,5 @@ ARG JAR_FILE=study-project
 ARG APP_VERSION=0.0.1-SNAPSHOT
 COPY /target/${JAR_FILE}-${APP_VERSION}.jar /app/application.jar
 
+#"hosts": ["endpoint|redacted"],
 ENTRYPOINT ["java", "-jar", "/app/application.jar"]
