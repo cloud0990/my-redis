@@ -21,9 +21,20 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t my-docker-app:latest . -f docker/Dockerfile -d
+          docker build -t my-docker-app:latest . -f docker/Dockerfile
 
       - name: Push Docker image
         run: |
           docker tag my-docker-image:latest ${{ secrets.DOCKER_HUB_USERNAME }}/my-docker-app:latest
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/my-docker-app:latest
+
+      - name: Stop and remove existing container
+        run: |
+          if [ "$(docker ps -q -f name=my-docker-app)" ]; then
+            docker stop my-docker-app
+            docker rm my-docker-app
+          fi
+
+      - name: Run new container
+        run: |
+          docker run -d -p 9090:9090 --name my-docker-app my-docker-app:latest
